@@ -6,6 +6,8 @@ type Image interface {
 	Translate(float64, float64)
 	Scale(float64, float64)
 	Rotate(float64)
+	Width() float64
+	Height() float64
 }
 
 type Graphics interface {
