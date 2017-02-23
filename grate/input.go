@@ -8,6 +8,7 @@ type Input interface {
 	KeyS() int
 	KeyD() int
 	KeySpace() int
+	KeyEnter() int
 }
 
 

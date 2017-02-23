@@ -5,6 +5,7 @@ import "./grate"
 var ground grate.Image
 var scene grate.Scene
 var hero = new(Hero)
+var mailbox grate.Mailbox
 
 type Game struct {}
 
@@ -12,6 +13,7 @@ func (Game) Load() {
 	ground = graphics.Image("ground.png")
 	ground.Load()
 	scene.Add(hero)
+	scene.Add(&mailbox)
 	scene.Load()
 }
 
