@@ -18,6 +18,8 @@ func (Game) Load() {
 	enemy.X = 400
 	enemy.Y = 50
 	scene.Add(enemy)
+
+	scene.Add(&Platform{X:400, Y:500})
 	
 	//Add a hero to the scene
 	scene.Add(hero)
