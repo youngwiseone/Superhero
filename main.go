@@ -35,7 +35,7 @@ func (Game) Update() bool {
 }
 
 func (Game) Draw() {
-	ground.Scale(graphics.Width(), 100)
+	ground.Scale(graphics.Width(), 21)
 	ground.Translate(0, graphics.Height()-100)
 	ground.Translate(0, -hero.Y+graphics.Height()/2)
 	ground.Draw()
