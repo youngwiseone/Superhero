@@ -1,6 +1,7 @@
 package main
 
 import "./grate"
+import "math"
 
 type Hero struct {
 	X, Y float64
@@ -9,6 +10,9 @@ type Hero struct {
 	jumpaccel float64
 	jumping bool
 	jumpstrength float64
+	
+	attacking bool
+	attackstep int
 }
 
 func (hero *Hero) Load() {
@@ -17,7 +21,8 @@ func (hero *Hero) Load() {
 	hero.gravity = 5
 }
 
-func (hero *Hero) Update() {
+
+func (hero *Hero) Update() bool {
 
 	//Hero Controls
 	if input.KeyIsDown(input.KeyA()) {
@@ -32,10 +37,23 @@ func (hero *Hero) Update() {
 		hero.jumpstrength--
 	}
 	
+	if input.KeyIsDown(input.KeyEnter()) {
+		hero.attacking = true
+	}
+	
 	if hero.jumping {
 		hero.Y -= hero.jumpstrength
 		hero.jumpaccel+=1
 		hero.Y += hero.jumpaccel/2
+	}
+	
+	if hero.attacking {
+		hero.attackstep += 20
+		if hero.attackstep > 360 {
+			hero.attacking = false
+			hero.attackstep = 0
+			mailbox.SendMessage("kill", hero.X, hero.Y, 100)
+		}
 	}
 	
 	//Hero Gravity
@@ -48,11 +66,16 @@ func (hero *Hero) Update() {
 		hero.jumping = false
 		hero.jumpstrength = 20
 	}
+	
+	return false
 }
 
 func (hero *Hero) Draw() {
 	var w, h = hero.img.Width(), hero.img.Height()
 	hero.img.Translate(-w/2, -h/2)
+	if hero.attacking {
+		hero.img.Rotate((float64(hero.attackstep)*math.Pi)/180)
+	}
 	hero.img.Translate(graphics.Width()/2, graphics.Height()/2)
 	hero.img.Draw()
 }

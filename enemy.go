@@ -25,7 +25,7 @@ func (enemy *Enemy) Load() {
 	enemy.runRight = false
 }
 
-func (enemy *Enemy) Update() {
+func (enemy *Enemy) Update() bool {
 
 	//Enemy Movement
 	if enemy.runLeft == true {
@@ -63,7 +63,16 @@ func (enemy *Enemy) Update() {
 	
 	enemy.X += enemy.speed
 	
-	
+	for {
+		var message = mailbox.GetMessage(enemy.X, enemy.Y, 50)
+		if message.Data == "" {
+			break
+		}
+		
+		if message.Data == "kill" {
+			return true
+		}
+	}
 	
 	if enemy.jumping {
 		enemy.Y -= enemy.jumpstrength
@@ -81,6 +90,8 @@ func (enemy *Enemy) Update() {
 		enemy.jumping = false
 		enemy.jumpstrength = 20
 	}
+	
+	return false
 }
 
 func (enemy *Enemy) Draw() {
