@@ -13,7 +13,7 @@ func (Game) Load() {
 	ground = graphics.Image("ground.png")
 	ground.Load()
 	
-	scene.Add(&Platform{X:400, Y:500})
+	scene.Add(&Platform{X:400, Y:400})
 
 	scene.Add(&Enemy{X:400, Y:50})
 	scene.Add(&Enemy{X:500, Y:50})
