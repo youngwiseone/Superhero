@@ -39,6 +39,16 @@ func (img *EbitenImage) Rotate(angle float64) {
 	img.options.GeoM.Rotate(angle)
 }
 
+func (img *EbitenImage) Width() float64 {
+	var w, _ = img.Image.Size()
+	return float64(w)
+}
+
+func (img *EbitenImage) Height() float64 {
+	var _, h = img.Image.Size()
+	return float64(h)
+}
+
 type EbitenGraphics struct {}
 
 func (EbitenGraphics) Image(path string) Image {
