@@ -3,25 +3,26 @@ package main
 import "./grate"
 
 var ground grate.Image
-var hero Hero
+var scene grate.Scene
 
 type Game struct {}
 
 func (Game) Load() {
 	ground = graphics.Image("ground.png")
 	ground.Load()
-	hero.Load()
+	scene.Add(new(Hero))
+	scene.Load()
 }
 
 func (Game) Update() {
-	hero.Update()
+	scene.Update()
 }
 
 func (Game) Draw() {
 	ground.Scale(graphics.Width(), 100)
 	ground.Translate(0, graphics.Height()-100)
 	ground.Draw()
-	hero.Draw()
+	scene.Draw()
 }
 
 //Grate initialisation.
