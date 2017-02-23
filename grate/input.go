@@ -7,6 +7,7 @@ type Input interface {
 	KeyA() int
 	KeyS() int
 	KeyD() int
+	KeySpace() int
 }
 
 

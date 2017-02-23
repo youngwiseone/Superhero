@@ -12,3 +12,4 @@ func (EbitenInput) KeyW() int { return int(ebiten.KeyW) }
 func (EbitenInput) KeyA() int { return int(ebiten.KeyA) }
 func (EbitenInput) KeyS() int { return int(ebiten.KeyS) }
 func (EbitenInput) KeyD() int { return int(ebiten.KeyD) }
+func (EbitenInput) KeySpace() int { return int(ebiten.KeySpace) }
