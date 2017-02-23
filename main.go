@@ -12,6 +12,14 @@ type Game struct {}
 func (Game) Load() {
 	ground = graphics.Image("ground.png")
 	ground.Load()
+	
+	//Add an enemy to the scene
+	var enemy = new(Enemy)
+	enemy.X = 400
+	enemy.Y = 50
+	scene.Add(enemy)
+	
+	//Add a hero to the scene
 	scene.Add(hero)
 	scene.Add(&mailbox)
 	scene.Load()
