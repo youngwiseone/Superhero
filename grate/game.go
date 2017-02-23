@@ -3,7 +3,7 @@ package grate
 type Node interface {
 	Load()
 	Draw()
-	Update()
+	Update() bool
 }
 
 type Engine interface {

@@ -25,8 +25,8 @@ func (Game) Load() {
 	scene.Load()
 }
 
-func (Game) Update() {
-	scene.Update()
+func (Game) Update() bool {
+	return scene.Update()
 }
 
 func (Game) Draw() {

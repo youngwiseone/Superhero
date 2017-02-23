@@ -22,7 +22,7 @@ func (hero *Hero) Load() {
 }
 
 
-func (hero *Hero) Update() {
+func (hero *Hero) Update() bool {
 
 	//Hero Controls
 	if input.KeyIsDown(input.KeyA()) {
@@ -66,6 +66,8 @@ func (hero *Hero) Update() {
 		hero.jumping = false
 		hero.jumpstrength = 20
 	}
+	
+	return false
 }
 
 func (hero *Hero) Draw() {

@@ -2,7 +2,7 @@ package grate
 
 type Message struct {
 	X, Y, R float64
-	data string
+	Data string
 }
 
 type Mailbox struct {
@@ -14,9 +14,11 @@ func (mailbox *Mailbox) Load() {
 	
 }
 
-func (mailbox *Mailbox) Update() {
+func (mailbox *Mailbox) Update() bool {
 	mailbox.Messages, mailbox.Incoming = mailbox.Incoming, mailbox.Messages
 	mailbox.Incoming = mailbox.Incoming[:0]
+	
+	return false
 }
 
 func (mailbox *Mailbox) Draw() {
@@ -24,7 +26,7 @@ func (mailbox *Mailbox) Draw() {
 }
 
 func (mailbox *Mailbox) SendMessage(data string, x, y, r float64) {
-	mailbox.Incoming = append(mailbox.Incoming, Message{data:data, X:x, Y:y, R:r})
+	mailbox.Incoming = append(mailbox.Incoming, Message{Data:data, X:x, Y:y, R:r})
 }
 
 func (mailbox *Mailbox) GetMessage(x, y, r float64) Message {
