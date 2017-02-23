@@ -10,6 +10,7 @@ type Enemy struct {
 	jumping bool
 	jumpstrength float64
 	speed float64
+	runTime float64
 	runRight bool
 	runLeft bool
 }
@@ -19,6 +20,7 @@ func (enemy *Enemy) Load() {
 	enemy.img.Load()
 	enemy.gravity = 5
 	enemy.speed = 1
+	enemy.runTime = 1
 	enemy.runLeft = true
 	enemy.runRight = false
 }
@@ -27,21 +29,33 @@ func (enemy *Enemy) Update() {
 
 	//Enemy Movement
 	if enemy.runLeft == true {
-		if enemy.speed < 5 && enemy.speed > 0{
-			enemy.speed += 1
+		if enemy.runTime < 50 && enemy.runTime > 0{
+			if enemy.speed > 0 && enemy.speed != 5 && enemy.runTime < (50/4)*3{
+				enemy.speed += 0.2
+			}else if enemy.runTime > (50/4)*3{
+				enemy.speed -= 0.1
+			}
+			enemy.runTime += 1
 		}
-		if enemy.speed == 5 {
+		if enemy.runTime == 50 {
 			enemy.runRight = true
+			enemy.runTime = -1
 			enemy.speed = -1
 			enemy.runLeft = false
 		}
 	}
 	if enemy.runRight == true {
-		if enemy.speed > -5 && enemy.speed < 0{
-			enemy.speed -= 1
+		if enemy.runTime > -50 && enemy.runTime < 0{
+			if enemy.speed < 0 && enemy.speed != -5 && enemy.runTime > (-50/4)*3{
+				enemy.speed -= 0.2
+			}else if enemy.runTime < (-50/4)*3{
+				enemy.speed += 0.1
+			}
+			enemy.runTime -= 1
 		}
-		if enemy.speed == -5 {
+		if enemy.runTime == -50 {
 			enemy.runLeft = true
+			enemy.runTime = 1
 			enemy.speed = 1
 			enemy.runRight = false
 		}
