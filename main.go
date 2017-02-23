@@ -14,6 +14,9 @@ func (Game) Load() {
 	ground.Load()
 	
 	scene.Add(&Platform{X:400, Y:400})
+	scene.Add(&Tree{X:150, Y:430})
+	scene.Add(&Tree{X:350, Y:430})
+	scene.Add(&Tree{X:50, Y:430})
 
 	scene.Add(&Enemy{X:400, Y:50})
 	scene.Add(&Enemy{X:500, Y:50})
