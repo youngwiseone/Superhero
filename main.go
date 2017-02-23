@@ -13,13 +13,13 @@ func (Game) Load() {
 	ground = graphics.Image("ground.png")
 	ground.Load()
 	
-	//Add an enemy to the scene
-	var enemy = new(Enemy)
-	enemy.X = 400
-	enemy.Y = 50
-	scene.Add(enemy)
-
 	scene.Add(&Platform{X:400, Y:500})
+
+	scene.Add(&Enemy{X:400, Y:50})
+	scene.Add(&Enemy{X:500, Y:50})
+	scene.Add(&Enemy{X:300, Y:50})
+	scene.Add(&Enemy{X:200, Y:50})
+	scene.Add(&Enemy{X:100, Y:50})
 	
 	//Add a hero to the scene
 	scene.Add(hero)
