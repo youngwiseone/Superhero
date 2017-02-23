@@ -53,6 +53,6 @@ func (hero *Hero) Update() {
 func (hero *Hero) Draw() {
 	var w, h = hero.img.Width(), hero.img.Height()
 	hero.img.Translate(-w/2, -h/2)
-	hero.img.Translate(hero.X, hero.Y)
+	hero.img.Translate(graphics.Width()/2, graphics.Height()/2)
 	hero.img.Draw()
 }
