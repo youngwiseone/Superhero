@@ -11,6 +11,7 @@ type Enemy struct {
 	jumpstrength float64
 	speed float64
 	runTime float64
+	runLimit float64
 	runRight bool
 	runLeft bool
 }
@@ -21,6 +22,7 @@ func (enemy *Enemy) Load() {
 	enemy.gravity = 5
 	enemy.speed = 1
 	enemy.runTime = 1
+	enemy.runLimit = 50
 	enemy.runLeft = true
 	enemy.runRight = false
 }
@@ -29,15 +31,15 @@ func (enemy *Enemy) Update() bool {
 
 	//Enemy Movement
 	if enemy.runLeft == true {
-		if enemy.runTime < 50 && enemy.runTime > 0{
-			if enemy.speed > 0 && enemy.speed != 5 && enemy.runTime < (50/4)*3{
+		if enemy.runTime < enemy.runLimit && enemy.runTime > 0{
+			if enemy.speed > 0 && enemy.speed != 5 && enemy.runTime < (enemy.runLimit/4)*3{
 				enemy.speed += 0.2
-			}else if enemy.runTime > (50/4)*3{
+			}else if enemy.runTime > (enemy.runLimit/4)*3{
 				enemy.speed -= 0.1
 			}
 			enemy.runTime += 1
 		}
-		if enemy.runTime == 50 {
+		if enemy.runTime == enemy.runLimit {
 			enemy.runRight = true
 			enemy.runTime = -1
 			enemy.speed = -1
@@ -45,15 +47,15 @@ func (enemy *Enemy) Update() bool {
 		}
 	}
 	if enemy.runRight == true {
-		if enemy.runTime > -50 && enemy.runTime < 0{
-			if enemy.speed < 0 && enemy.speed != -5 && enemy.runTime > (-50/4)*3{
+		if enemy.runTime > -enemy.runLimit && enemy.runTime < 0{
+			if enemy.speed < 0 && enemy.speed != -5 && enemy.runTime > (-enemy.runLimit/4)*3{
 				enemy.speed -= 0.2
-			}else if enemy.runTime < (-50/4)*3{
+			}else if enemy.runTime < (-enemy.runLimit/4)*3{
 				enemy.speed += 0.1
 			}
 			enemy.runTime -= 1
 		}
-		if enemy.runTime == -50 {
+		if enemy.runTime == -enemy.runLimit {
 			enemy.runLeft = true
 			enemy.runTime = 1
 			enemy.speed = 1
@@ -64,7 +66,7 @@ func (enemy *Enemy) Update() bool {
 	enemy.X += enemy.speed
 	
 	for {
-		var message = mailbox.GetMessage(enemy.X, enemy.Y, 50)
+		var message = mailbox.GetMessage(enemy.X, enemy.Y, enemy.runLimit)
 		if message.Data == "" {
 			break
 		}
