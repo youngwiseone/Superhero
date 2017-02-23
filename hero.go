@@ -16,7 +16,7 @@ type Hero struct {
 }
 
 func (hero *Hero) Load() {
-	hero.img = graphics.Image("Hero.png")
+	hero.img = graphics.Image("images/Hero.png")
 	hero.img.Load()
 	hero.gravity = 5
 }

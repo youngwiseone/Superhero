@@ -9,7 +9,7 @@ type Platform struct {
 
 
 func (platform *Platform) Load() {
-	platform.img = graphics.Image("platform.png")
+	platform.img = graphics.Image("images/platform.png")
 	platform.img.Load()
 	platform.W = 100
 	platform.H = 27

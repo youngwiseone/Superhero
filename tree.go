@@ -8,7 +8,7 @@ type Tree struct {
 }
 
 func (tree *Tree) Load() {
-	tree.img = graphics.Image("Tree.png")
+	tree.img = graphics.Image("images/Tree.png")
 	tree.img.Load()
 }
 

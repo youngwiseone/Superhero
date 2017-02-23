@@ -17,7 +17,7 @@ type Enemy struct {
 }
 
 func (enemy *Enemy) Load() {
-	enemy.img = graphics.Image("Enemy.png")
+	enemy.img = graphics.Image("images/Enemy.png")
 	enemy.img.Load()
 	enemy.gravity = 5
 	enemy.speed = 1

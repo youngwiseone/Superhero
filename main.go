@@ -10,7 +10,7 @@ var mailbox grate.Mailbox
 type Game struct {}
 
 func (Game) Load() {
-	ground = graphics.Image("ground.png")
+	ground = graphics.Image("images/ground.png")
 	ground.Load()
 	
 	scene.Add(&Platform{X:400, Y:400})
