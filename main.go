@@ -13,6 +13,9 @@ func (Game) Load() {
 	ground = graphics.Image("ground.png")
 	ground.Load()
 	
+	scene.Add(&Tree{X:150, Y:430})
+	scene.Add(&Tree{X:350, Y:430})
+	scene.Add(&Tree{X:50, Y:430})
 
 	scene.Add(&Enemy{X:400, Y:50})
 	scene.Add(&Enemy{X:500, Y:50})
